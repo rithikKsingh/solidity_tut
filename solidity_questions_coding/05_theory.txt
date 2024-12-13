@@ -1,0 +1,57 @@
+Introduction
+In Solidity, understanding how data is stored and managed is crucial for optimizing performance and ensuring security in smart contracts.
+
+Data Locations
+Solidity stores data in three main locations:
+1. Calldata: Temporary, read-only data used for function inputs.
+2. Memory: Temporary, modifiable data used during function execution.
+3. Storage: Permanent data saved on the blockchain, keeping its value across function calls and transactions.
+
+### Calldata vs. Memory
+- Calldata:
+  - Read-only.
+  - Cheaper to use than memory.
+  - Typically used for function inputs.
+  - Example:  
+    function displayName(string calldata _name) public view returns (string memory) {
+        return _name; // Can't modify _name directly.
+    }
+
+- Memory:
+  - Read and write access.
+  - Variables in memory are temporary and only exist during the function execution.
+  - Example:  
+    function processName(string memory _name) public pure returns (string memory) {
+        _name = "New Name"; // Can modify _name because it's in memory.
+        return _name;
+    }
+
+### Storage
+- Storage variables:
+  - Permanent and stored on the blockchain.
+  - Declared outside of functions and retain their values across transactions.
+  - Example:  
+    contract MyContract {
+        uint256 favoriteNumber; // Storage variable.
+    }
+
+### Strings vs. Primitive Types
+- Strings:
+  - Treated as arrays of bytes, so you must explicitly specify their data location (`memory` or `calldata`).
+
+- Primitive types:
+  - Like `uint256`, they have fixed rules for where they are stored. You don’t need to specify their location.
+
+### Rules and Notes
+1. You cannot use `storage` for function parameters since they are temporary. Use `memory` or `calldata` instead.
+2. Temporary variables in functions (like numbers) are usually stored in memory or the stack.
+
+---
+
+### Example
+This function adds a person to a list, demonstrating proper use of `memory` for a string:
+function addPerson(string memory _name, uint256 _favoriteNumber) public {
+    listOfPeople.push(Person(_favoriteNumber, _name));
+}
+
+Here, `_name` is in `memory` since it's temporary, and `listOfPeople` is stored permanently in `storage`.
