@@ -1,0 +1,63 @@
+Solidity Types
+
+Solidity supports various elementary types that can be combined to create more _complex_ ones. 
+You can read more about them in the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.20/types.html#types).
+
+* Boolean (bool): true or false
+* Unsigned Integer (uint): unsigned whole number (positive)
+* Integer (int): signed whole number (positive and negative)
+* Address (address): 20 bytes value. An example of an address can be found within your MetaMask account.
+* Bytes (bytes): low-level raw byte data
+
+Variables definition
+
+Variables are just placeholders for values. A value can be one **data type described in the list above. 
+For instance, we could create a Boolean variable named `hasFavoriteNumber`, which would represent whether someone has a favourite number or not (constant `true` or `false`).
+bool hasFavoriteNumber = true; // The variable `hasFavoriteNumber` represents the value `true`
+
+uint256 specifies that the variable has 256 bits. uint is a shorthand for uint256.
+
+### Bytes and strings
+
+Bytes are a _collection of characters_ written in hexadecimal representation.
+
+bytes1 minBytes = "I am a fixed size byte array of 1 byte";
+bytes32 maxBytes = "I am a fixed size byte array of 32 bytes";
+bytes dynamicBytes = "I am a dynamic array, so you can manipulate my size";
+
+Bytes can be allocated in size (up to `bytes32`). However, bytes and bytes32 represent distinct data types.
+
+Strings are internally represented as _dynamic byte arrays_ (`bytes` type) and designed specifically for working with text. 
+For this reason, a string can easily be converted into bytes.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+In Solidity, all types have default values when they are declared but not explicitly initialized. Here's a description of the default values for common types:
+
+1. **`bool`**: 
+   - Default value: `false`
+   - This represents a boolean value, which can either be `true` or `false`. The default is `false` because it is the zero-equivalent value for this type.
+
+2. **`uint`**:
+   - Default value: `0`
+   - Unsigned integers (`uint`), which can only hold non-negative values, default to zero.
+
+3. **`int256`**:
+   - Default value: `0`
+   - Signed integers (`int` or `int256`), which can hold both positive and negative values, also default to zero.
+
+4. **`string`**:
+   - Default value: `""` (empty string)
+   - Strings default to an empty string, meaning they contain no characters.
+
+5. **`address`**:
+   - Default value: `0x0000000000000000000000000000000000000000`
+   - Ethereum addresses default to the zero address, which is 20 bytes of zero.
+
+6. **`bytes`**:
+   - Default value: `0x` (empty bytes array)
+   - The dynamic bytes type defaults to an empty array of bytes.
+
+7. **`bytes32`**:
+   - Default value: `0x0000000000000000000000000000000000000000000000000000000000000000`
+   - The fixed-size byte array (`bytes32`) defaults to an array of 32 zero bytes.
