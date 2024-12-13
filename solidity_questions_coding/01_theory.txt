@@ -1,0 +1,35 @@
+Q. What is Remix IDE?
+A. This is an IDE (Integrated Development Environment), a powerful tool used to build and develop smart contracts in Solidity. 
+   It helps to easily visualize and interact with our smart contracts. It contains a file explorer that hosts all the files, 
+   a Solidity compiler and a tab where you can deploy your contracts.
+
+Q. Compiler directive
+A. The `pragma` directive specifies the _version_ of the Solidity compiler that you want to use to build your source file. 
+   When the compiler encounters this line, it will check its version against the one you specified here. 
+   If the compiler version is different, Remix will automatically adjust accordingly to your specifications.
+
+   1 use exactly One version:
+   pragma solidity 0.8.19; // use only version 0.8.19
+
+   2 use versions that fall within a lower and upper range
+   // use versions between 0.8.19 and 0.9.0 (excluded)
+   pragma solidity ^0.8.19;
+   pragma solidity >=0.8.19 <0.9.0;
+
+Q. SPDX License Identifier
+A. It's a good practice (even not mandatory) to start your smart contract with an SPDX License Identifier. 
+   It helps in making licensing and sharing code easier from a legal perspective.
+
+   // SPDX-License-Identifier: MIT
+   pragma solidity ^0.8.19;
+
+   The MIT license is recognized as one of the most permissive, granting anyone the freedom to use the following code and essentially use it as they see fit.
+
+Q. What is Compiling?
+A. Compiling your code means taking **human-readable code and transforming it into **computer-readable code or bytecode.
+
+
+
+
+
+
