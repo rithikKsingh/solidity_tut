@@ -1,0 +1,115 @@
+#### Visibility
+
+In Solidity, functions and variables can have one of these four visibility specifiers:
+
+* 🌎 `public`: accessible from both inside the contract and from external contracts
+* 🏠 `private`: accessible only within the current contract. It does not hide a value but only restricts its access.
+* 🌲 `external`: used only for functions. Visible only from outside the contract.
+* 🏠🏠 `internal`: accessible by the current contract and any contracts derived from it.
+
+If a visibility specifier is not given, it defaults to `internal`.
+
+contract SimpleStorage {
+
+    uint256 favoriteNumber; // storage variable: it's stored in a section of the blockchain called "Storage"
+
+    function store(uint256 _favoriteNumber) public {
+        // the variable favorite number is updated with the value that is contained into the parameter `_favoriteNumber`
+        favoriteNumber = _favoriteNumber;
+    }
+}
+
+
+#### Pure and View keywords
+
+The terms `view` and `pure` are used when a function reads values from the blockchain without altering its state. 
+Such functions will not initiate transactions but rather make calls, represented as blue buttons in the Remix interface. 
+A `pure` function will prohibit any reading from the state or storage.
+
+function retrieve() public view returns(uint256) {
+    return favoriteNumber;
+}
+
+function retrieve() public pure returns(uint256) {
+    return 7;
+}
+
+> 🚧 WARNING
+> While calling `view` or `pure` functions doesn’t typically require gas, they do require it when 
+called by another function that modifies the state or storage through a transaction (e.g. calling the function `retrieve` 
+inside the function `storage`). This cost is called **execution cost** and it will add up to the transaction cost.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Q.What's the difference between a transaction that deploys a contract and a transaction that transfers ETH?
+
+The primary difference between a transaction that deploys a smart contract and a transaction that transfers ETH lies in their purpose, structure, and execution.
+
+1. Purpose
+- Contract Deployment:
+  - The purpose is to create a new smart contract on the Ethereum blockchain.
+  - The transaction includes the contract's bytecode and initialization logic.
+- ETH Transfer:
+  - The purpose is to transfer Ether from one account to another.
+  - This is a simple value transfer between externally owned accounts (EOAs) or between EOAs and contracts.
+
+2. Data Field Content
+- Contract Deployment:
+  - The `data` field contains the compiled bytecode of the contract and any constructor arguments.
+  - The `to` field is left empty (i.e., `null` or `0x0`) because the transaction creates a new address for the contract.
+- ETH Transfer:
+  - The `data` field is typically **empty** unless interacting with a smart contract or sending a message along with the ETH.
+  - The `to` field specifies the recipient's address.
+
+3. Result
+- Contract Deployment:
+  - Results in the creation of a new contract with its own unique address.
+  - Gas is consumed to execute the constructor and store the contract's code on the blockchain.
+- ETH Transfer:
+  - Results in the movement of Ether from the sender's account to the recipient's account.
+  - Gas is consumed for the transaction's computation but is generally lower than for contract deployment.
+
+4. Gas Consumption
+- Contract Deployment:
+  - Higher gas cost due to the need to execute and store the contract on-chain.
+  - Depends on the size and complexity of the contract bytecode and its constructor logic.
+- ETH Transfer:
+  - Lower gas cost because it only involves updating account balances and optional data handling.
+
+5. Execution**
+- Contract Deployment:
+  - The Ethereum Virtual Machine (EVM) executes the constructor, stores the contract code, and assigns an address.
+- ETH Transfer:
+  - The EVM updates the sender and recipient balances, deducting gas fees from the sender's account.
+
+---
+Example
+- **Contract Deployment:
+  // Deploy a simple contract
+  pragma solidity ^0.8.0;
+  contract MyContract {
+      uint public x;
+      constructor(uint _x) {
+          x = _x;
+      }
+  }
+  This would create a new contract with a unique address.
+
+- ETH Transfer:
+  // Example in web3.js
+  web3.eth.sendTransaction({
+      from: '0xYourAddress',
+      to: '0xRecipientAddress',
+      value: web3.utils.toWei('1', 'ether')
+  });
+  This sends 1 ETH to the recipient.
+
+---
+
+### **Summary Table**
+| Feature                 | Contract Deployment              | ETH Transfer                  |
+|-------------------------|-----------------------------------|-------------------------------|
+| **Purpose**             | Create a smart contract          | Transfer Ether                |
+| **`to` Field**          | Empty (`null`)                   | Contains recipient address    |
+| **`data` Field**        | Contains contract bytecode       | Usually empty                 |
+| **Gas Cost**            | High (depends on contract size)  | Low                           |
+| **Result**              | New contract with unique address | Ether moved between accounts  |
