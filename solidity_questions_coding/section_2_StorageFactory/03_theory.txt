@@ -1,0 +1,33 @@
+### Inheritance
+
+We are going to enhance the `SimpleStorage` contract by adding a new functionality: the ability to add five (5) to the stored `favoriteNumber`.
+To achieve this, we could duplicate the existing `SimpleStorage` contract and make changes to the new version. However, this approach leads to 
+redundant code. A better practice could be to utilize **inheritance**, which is the mechanism that allows the `AddFiveStorage` contract to derive 
+all the functionalities of `SimpleStorage`.
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+import {SimpleStorage} from "./SimpleStorage.sol";
+
+contract AddFiveStorage is SimpleStorage {}
+
+The `is` keyword signifies inheritance and links the parent contract `SimpleStorage` to its child contract, `AddFiveStorage`.
+
+### Override and virtual
+
+The `AddFiveStorage` contract now inherits all methods from `SimpleStorage`. It's possible to add new functions to it, for example:
+
+function sayHello() public pure returns(string memory) {
+    return "Hello";
+}
+
+We can also modify existing functions from `SimpleStorage` by using the **`override`** keyword. 
+Let's say that we want to modify the `store` function, adding '5' to the favorite number being stored. 
+If we copy the exact signature of the `store` function, an error will occur:
+
+function store(uint256 _newFavNumber) public override {}
+
+mark the `store` function in `SimpleStorage.sol` as **virtual**, enabling it to be overridden by child contracts:
+function store(uint256 _newFavNumber) public override {
+    favoriteNumber = _newFavNumber + 5;
+}
