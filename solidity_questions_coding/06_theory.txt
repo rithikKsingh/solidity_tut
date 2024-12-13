@@ -1,0 +1,24 @@
+Mapping
+If we want to know just one person's favorite number (e.g. Chelsea's) but our contract holds a (long) array of `Person`, 
+we would need to iterate through the whole list to find the desired value:
+
+list_of_people.add(Person("Pat", 7));
+list_of_people.add(Person("John", 8));
+list_of_people.add(Person("Mariah", 10));
+list_of_people.add(Person("Chelsea", 232));
+
+// Go through all the people to check their favorite number.
+// If name is "Chelsea" -> return 232
+
+Iterating through a long list of data is usually expensive and time-consuming, especially when we do not need to access elements by their index.
+
+To directly access the desired value without the need to iterate through the whole array, we can use Mappings.
+mapping (string => uint256) public nameToFavoriteNumber;
+nameToFavoriteNumber[_name] = _favoriteNumber;
+
+> 👀❗IMPORTANT
+> Mappings have a constant time complexity for lookups, meaning that retrieving a value by its key is done in constant time.
+
+> 🗒️ NOTE
+> The default value for all key types is zero. In our case, `nameToFavoriteNumber["ET"]` equals 0.
+
