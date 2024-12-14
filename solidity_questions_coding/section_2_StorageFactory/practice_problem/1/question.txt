@@ -1,0 +1,3 @@
+Create a contract `AnimalFactory` that includes a function `createAnimals`. 
+This function must be capable of deploying the other 2 contracts 
+`Cows` and `Birds`, which are simple contracts with just a constructor method.
