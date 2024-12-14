@@ -1,0 +1,1 @@
+Deploy 3 instances of the `SimpleStorage` contract through the `StorageFactory`. Then store some numbers via `sfStore` and retrieve all of them via `sfGet`.
