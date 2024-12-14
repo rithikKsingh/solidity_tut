@@ -68,3 +68,28 @@ require(msg.value > 1 ether, "Didn't send enough ETH"); //if the condition is fa
 
 If a user attempts to send less Ether than the required amount, the transaction will **fail** and a _message_ will be displayed. For example, if a user attempts to send 1000 Wei, which is significantly less than one Ether, the function will revert and does not proceed.
 
+**Reverts** and **gas usage** help maintain the integrity of the blockchain state. _Reverts_ will undo transactions when failures occur, while _gas_ enables transactions execution and runs the EVM. When a transaction fails, the gas consumed is not recoverable. To manage this, Ethereum allows users to set the maximum amount of gas they're willing to pay for each transaction.
+
+### Transaction Fields
+
+During a **value** transfer, a transaction will contain the following fields:
+
+* **Nonce**: transaction counter for the account
+* **Gas price (wei)**: maximum price that the sender is willing to pay _per unit of gas_
+* **Gas Limit**: maximum amount of gas the sender is willing to use for the transaction. A common value could be around 21000.
+* **To**: _recipient's address_
+* **Value (Wei)**: amount of cryptocurrency to be transferred to the recipient
+* **Data**: 🫙 _empty_
+* **v,r,s**: components of the transaction signature. They prove that the transaction is authorised by the sender.
+
+During a _**contract interaction transaction**_, it will instead be populated with:
+
+* **Nonce**: transaction counter for the account
+* **Gas price (wei)**: maximum price that the sender is willing to pay _per unit of gas_
+* **Gas Limit**: maximum amount of gas the sender is willing to use for the transaction. A common value could be around 21000.
+* **To**: _address the transaction is sent to (e.g. smart contract)_
+* **Value (Wei)**: amount of cryptocurrency to be transferred to the recipient
+* **Data**: 📦 _the content to send to the_ _**To**_ _address_, e.g. a function and its parameters.
+* **v,r,s**: components of the transaction signature. They prove that the transaction is authorised by the sender.
+
+
