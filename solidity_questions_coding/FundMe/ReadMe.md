@@ -66,4 +66,5 @@ require(msg.value > 1 ether, "Didn't send enough ETH"); //if the condition is fa
 > 🗒️ **NOTE**:br
 > Gas costs are usually expressed in Gwei
 
+If a user attempts to send less Ether than the required amount, the transaction will **fail** and a _message_ will be displayed. For example, if a user attempts to send 1000 Wei, which is significantly less than one Ether, the function will revert and does not proceed.
 
