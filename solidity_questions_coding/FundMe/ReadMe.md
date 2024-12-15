@@ -93,7 +93,7 @@ During a _**contract interaction transaction**_, it will instead be populated wi
 * **v,r,s**: components of the transaction signature. They prove that the transaction is authorised by the sender.
 
 
-##Questions##
+###Questions
 Bob sets his gas price to 20 Gwei and his gas limit to 50,000 units. 
 The transaction consumes 30,000 units of gas before a revert occurs. How much ETH will be effectively charged?
 
