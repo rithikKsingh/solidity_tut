@@ -122,3 +122,21 @@ Functions: Allows smart contracts to make API calls to fetch external data for a
 Chainlink in FundMe: Using Chainlink Data Feeds, the fundMe contract can fetch live ETH/USD prices to enable currency conversion. This ensures users can fund the contract with $5 worth of ETH, improving flexibility and usability.
 
 Conclusion Chainlink solves the Oracle problem while offering additional tools like randomness, automation, and API integration to create feature-rich decentralized applications. It’s a powerful choice for enhancing blockchain projects.
+
+---
+### Interacting with an External Contract
+
+To interact with any external contract, you need the contract's _address_ and _ABI_ (Application Binary Interface). Think of the `address` as a _house number_ that identifies the specific contract on the blockchain, while the `ABI` serves as a _manual_ that explains how to interact with the contract.
+
+To obtain the contract ABI, you can compile a Solidity **interface** that the target contract implements. Then, create a new instance of the interface pointing to the specific address of the deployed contract.
+
+### Chainlink Price Feeds
+
+[Chainlink Price Feeds](https://docs.chain.link/docs/using-chainlink-reference-contracts/) provide a reliable way to access real-world data, such as pricing data, and inject it into smart contracts. This is particularly useful for executing mathematical operations in Solidity and the Ethereum Virtual Machine (EVM), where floating-point numbers are not used.
+
+### Solidity Global Properties
+
+The [Solidity documentation](https://docs.soliditylang.org/en/latest/cheatsheet.html#block-and-transaction-properties) provides several global properties that are essential for interacting with the Ethereum blockchain. Here are two key properties:
+
+* `msg.sender`: this property refers to the address of the account that **initiated the current function call**
+* `msg.value`: this property represents the **amount of Wei** sent with a function call
