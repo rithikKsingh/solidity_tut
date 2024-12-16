@@ -141,9 +141,116 @@ The [Solidity documentation](https://docs.soliditylang.org/en/latest/cheatsheet.
 * `msg.sender`: this property refers to the address of the account that **initiated the current function call**
 * `msg.value`: this property represents the **amount of Wei** sent with a function call
 
-
+---
 ### Libraries
 
 Libraries are collections of reusable code designed to be stateless and utility-focused. They typically provide helper functions (e.g., mathematical operations, string manipulation) that can be called from other contracts.
 
+Difference between Libraray and Contract?
 
+The main differences between **Solidity libraries** and **contracts** are rooted in their design, purpose, and behavior in the Ethereum ecosystem. Here's a breakdown:
+
+---
+
+### 1. **Purpose**
+   - **Library**:  
+     Libraries are collections of reusable code designed to be stateless and utility-focused. They typically provide helper functions (e.g., mathematical operations, string manipulation) that can be called from other contracts.
+   - **Contract**:  
+     Contracts are the building blocks of decentralized applications (dApps). They define state, business logic, and interactions with users, other contracts, and blockchain data.
+
+---
+
+### 2. **State Management**
+   - **Library**:  
+     Libraries do not maintain their own state. They operate as **stateless** entities, meaning they only perform computations or actions without storing data.
+   - **Contract**:  
+     Contracts maintain their own state (storage variables) and can track user-specific or application-specific data over time.
+
+---
+
+### 3. **Deployment**
+   - **Library**:  
+     Libraries can be deployed once and reused by multiple contracts, reducing deployment costs and enabling modular design. They are deployed as standalone bytecode on the blockchain.
+   - **Contract**:  
+     Each contract is deployed individually and interacts with the blockchain based on its specific logic and storage.
+
+---
+
+### 4. **Functionality and Calls**
+   - **Library**:  
+     Functions in libraries are typically **pure** or **view**, meaning they do not modify or depend on blockchain state.  
+     - Libraries can be of two types:
+       1. **Embedded Library**: Their code is copied into the calling contract during compilation.
+       2. **Deployed Library**: Functions are executed via **delegatecall**, allowing the calling contract to execute library code within its own context.
+   - **Contract**:  
+     Contracts can have state-modifying functions and maintain persistent data. They communicate via **message calls** and cannot use `delegatecall` by default.
+
+---
+
+### 5. **Inheritance**
+   - **Library**:  
+     Libraries cannot be inherited or extend other libraries or contracts. However, they can be used directly by contracts via the `using for` directive.
+   - **Contract**:  
+     Contracts can inherit from other contracts, enabling code reuse, modularization, and polymorphism.
+
+---
+
+### 6. **Gas Costs**
+   - **Library**:  
+     - Using an embedded library adds gas costs during deployment because its code is inlined.  
+     - Deployed libraries reduce deployment costs for the calling contract because the library code is reused and does not increase the contract's size.
+   - **Contract**:  
+     Contracts incur their full deployment cost, including all logic, functions, and state variables.
+
+---
+
+### 7. **`selfdestruct` Behavior**
+   - **Library**:  
+     Libraries cannot use `selfdestruct`, as they are intended to be stateless and utility-driven.
+   - **Contract**:  
+     Contracts can use `selfdestruct` to delete their bytecode and free up storage on the blockchain.
+
+---
+
+### 8. **Example Code**
+#### **Library Example**:
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+library MathLib {
+    function add(uint256 a, uint256 b) external pure returns (uint256) {
+        return a + b;
+    }
+}
+```
+
+#### **Contract Example**:
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Calculator {
+    uint256 public total;
+
+    function add(uint256 a, uint256 b) public {
+        total = a + b;
+    }
+}
+```
+
+---
+
+### **Key Summary Table**
+
+| **Feature**            | **Library**                      | **Contract**                   |
+|-------------------------|-----------------------------------|---------------------------------|
+| **Purpose**             | Utility-focused, reusable code   | dApp logic and state management|
+| **State Management**    | Stateless                        | Stateful                       |
+| **Deployment**          | Deployed once, reused by contracts | Deployed individually          |
+| **Inheritance**         | Cannot inherit or be inherited   | Can inherit other contracts    |
+| **Function Execution**  | `delegatecall` or inline in contract | Independent execution          |
+| **Gas Costs**           | Lower if reused, higher if inlined | Standard                       |
+| **`selfdestruct`**      | Not allowed                      | Allowed                        |
+
+Let me know if you’d like more clarification on any of these points!
