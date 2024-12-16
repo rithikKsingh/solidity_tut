@@ -140,3 +140,10 @@ The [Solidity documentation](https://docs.soliditylang.org/en/latest/cheatsheet.
 
 * `msg.sender`: this property refers to the address of the account that **initiated the current function call**
 * `msg.value`: this property represents the **amount of Wei** sent with a function call
+
+
+Libraries
+
+Libraries are collections of reusable code designed to be stateless and utility-focused. They typically provide helper functions (e.g., mathematical operations, string manipulation) that can be called from other contracts.
+
+
