@@ -467,4 +467,7 @@ If a transaction includes **data** but the specified function _does not exist_, 
 //  /        \
 //receive()  fallback()
 
-<img width="1470" alt="Screenshot 2024-10-11 at 11 48 51 AM" src="https://github.com/user-attachments/assets/ebba9849-6de0-4334-adb4-2f939e944cfb" />
+<img width="294" alt="Screenshot 2024-12-17 at 10 01 20 PM" src="https://github.com/user-attachments/assets/e73471e5-78c3-4567-81a6-11ddb5b724bd" />
+
+* What does it happen when Ether is sent with _data_ but in the contract only a `receive` function exist?
+-> a pop up will appear saying 'fallback function' doesn't exists. 
