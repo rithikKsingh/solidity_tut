@@ -457,15 +457,15 @@ In this contract, `result` is initialized to zero. When Ether is sent to the con
 If a transaction includes **data** but the specified function _does not exist_, the `fallback` function will be triggered, setting `result` to two.
 
 // Ether is sent to contract
-//      is msg.data empty?
-//          /   \
-//         yes  no
-//         /     \
-//    receive()?  fallback()
-//     /   \
-//   yes   no
-//  /        \
-//receive()  fallback()
+      is msg.data empty?
+          /   \
+         yes  no
+         /     \
+    receive()?  fallback()
+     /   \
+   yes   no
+  /        \
+receive()  fallback()
 
 <img width="294" alt="Screenshot 2024-12-17 at 10 01 20 PM" src="https://github.com/user-attachments/assets/e73471e5-78c3-4567-81a6-11ddb5b724bd" />
 
