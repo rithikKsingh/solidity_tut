@@ -380,7 +380,7 @@ When `withdraw` is called, the contract first executes the `onlyOwner` modifier.
 If the underscore `_` were placed before the `require` statement, the function's logic would execute first, followed by the `require` check, which is not the intended use case.
 
 ---
-### Optimizing Variables
+### Optimizing Variables (to make contract gas efficient)
 
 The variables `owner` and `minimumUSD` are set one time and they never change their value: `owner` is assigned during contract creation, and `minimumUSD` is initialized at the beginning of the contract.
 
