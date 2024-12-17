@@ -431,3 +431,40 @@ if (msg.sender != i_owner) {
 ```
 
 By implementing custom errors, we reduce gas costs and simplify error handling in our smart contracts.
+
+---
+### receive and fallback functions
+
+`receive` and `fallback` are _special functions_ triggered when users send Ether directly to the contract or call non-existent functions. These functions do not return anything and must be declared `external`
+
+```
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
+
+contract FallbackExample {
+    uint256 public result;
+
+    receive() external payable {
+        result = 1;
+    }
+
+    fallback() external payable {
+        result = 2;
+    }
+}
+```
+In this contract, `result` is initialized to zero. When Ether is sent to the contract, the `receive` function is triggered, setting `result` to one.
+If a transaction includes **data** but the specified function _does not exist_, the `fallback` function will be triggered, setting `result` to two.
+
+// Ether is sent to contract
+//      is msg.data empty?
+//          /   \
+//         yes  no
+//         /     \
+//    receive()?  fallback()
+//     /   \
+//   yes   no
+//  /        \
+//receive()  fallback()
+
+<img width="1470" alt="Screenshot 2024-10-11 at 11 48 51 AM" src="https://github.com/user-attachments/assets/ebba9849-6de0-4334-adb4-2f939e944cfb" />
