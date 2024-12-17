@@ -307,3 +307,41 @@ function add() public {
 🔥 **CAUTION**:br
 It's important to use unchecked blocks with caution as they reintroduce the possibility of overflows and underflows.
 
+----
+
+### Sending ETH from one account to another: `transfer`, `send`, and `call`
+### 1. Transfer
+
+The `transfer` function is the simplest way to send Ether to a recipient address:
+
+```
+payable(msg.sender).transfer(amount); // the current contract sends the Ether amount to the msg.sender
+
+```
+It's necessary to convert the recipient address to a **payable** address to allow it to receive Ether. This can be done by wrapping `msg.sender` with the `payable` keyword.
+
+However, `transfer` has a significant limitation. It can only use up to 2300 gas and it reverts any transaction that exceeds this gas limit.
+
+### 2. Send
+
+The `send` function is similar to `transfer`, but it differs in its behaviour:
+```
+bool success = payable(msg.sender).send(address(this).balance);
+require(success, "Send failed");
+```
+Like `transfer`, `send` also has a gas limit of 2300. If the gas limit is reached, it will not revert the transaction but return a boolean value (`true` or `false`) to indicate the success or failure of the transaction. It is the developer's responsibility to handle failure correctly, and it's good practice to trigger a **revert** condition if the `send` returns `false`.
+
+### 3. Call
+
+The `call` function is flexible and powerful. It can be used to call any function **without requiring its ABI**. It does not have a gas limit, and like `send`, it returns a boolean value instead of reverting like `transfer`.
+
+```solidity
+(bool success, ) = payable(msg.sender).call{value: address(this).balance}("");
+require(success, "Call failed");
+```
+To send funds using the `call` function, we convert the address of the receiver to `payable` and add the value inside curly brackets before the parameters passed.
+
+The `call` function returns two variables: a boolean for success or failure, and a byte object which stores returned data if any.
+
+> 👀❗**IMPORTANT**:br
+> `call` is the recommended way of sending and receiving Ethereum or other blockchain native tokens.
