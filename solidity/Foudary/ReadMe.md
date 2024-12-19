@@ -24,3 +24,11 @@ And that's it, your folder should look as follows:
 `test` is the folder that houses all your tests
 
 `foundry.toml` - gives configuration parameters for Foundry
+
+### Compiling Smart Contracts: A Guide to the Foundry Console Compilation Process
+
+Open a new terminal. Type in `forge build` or `forge compile` to compile the smart contracts in your project.
+
+Once the compiling is finished, you'll see some new folders in the Explorer tab on the left side. One of them is a folder called `out`. Here you'll be able to find the [ABI](https://docs.soliditylang.org/en/latest/abi-spec.html) of the smart contract together with the [Bytecode](https://www.geeksforgeeks.org/introduction-to-bytecode-and-opcode-in-solidity/) and a lot of useful information.
+
+The `cache` folder also appears. Generally, this folder is used to store temporary system files facilitating the compilation process. But for this course, you can safely ignore it.
