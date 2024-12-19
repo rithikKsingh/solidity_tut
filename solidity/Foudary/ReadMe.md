@@ -98,4 +98,65 @@ Great! Now that we configured our local network, the next step is to add one of 
 
 **NOTE: Do not use this account for anything else, do not interact with it or send things to it on mainnet or any other real blockchain, use it locally, for testing purposes. Everyone has access to it.**
 
+### Deploying to a local blockchain
 
+To find out more about forge's capabilities type
+
+```Solidity
+forge --help
+```
+
+Out of the resulting list, we are going to use the `create` command.
+
+Type `forge create --help` in the terminal or go [here](https://book.getfoundry.sh/reference/forge/forge-create) to find out more about the available configuration options.
+
+Try running `forge create SimpleStorage`. It should fail because we haven't specified a couple of required parameters:
+
+1. `Where do we deploy?`
+
+2. `Who's paying the gas fees/signing the transaction?`
+
+Let's tackle both these questions.
+
+Each blockchain (private or public) has an RPC URL (RPC SERVER) that acts as an endpoint. When we tried to deploy our smart contract, forge tried to use `http://localhost:8545/`, which doesn't host any blockchain. Thus, let's try to deploy our smart contract specifying the place where we want to deploy it.
+
+Start Ganache and press `Quickstart Ethereum`. Copy the RPC Server `HTTP://127.0.0.1:7545`. Let's run our forge create again specifying the correct rpc url.
+
+```
+forge create SimpleStorage --rpc-url http://127.0.0.1:7545
+```
+
+This again failed, indicating the following:
+
+```Solidity
+Error accessing local wallet. Did you set a private key, mnemonic or keystore?
+```
+
+Try the following command:
+
+```Solidity
+forge create SimpleStorage --rpc-url http://127.0.0.1:7545 --interactive
+```
+
+You will be asked to enter a private key, please paste one of the private keys available in Ganache. When you paste a key you won't see the text or any placeholder symbols, just press CTRL(CMD) + V and then ENTER.
+
+You can go to Ganache and check the `Blocks` and `Transactions` tabs to see more info about what you just did.
+
+On Anvil
+Do the following:
+
+1. Run `clear`
+2. Run `anvil`
+3. Create a new terminal by pressing the `+` button
+4. Copy one of the private keys from the anvil terminal
+5. Run `forge create SimpleStorage --interactive`
+   We don't need to specify an `--rpc-url` this time because forge defaults to Anvil's RPC URL.
+6. Go to the Anvil terminal and check the deployment details:
+
+The more explicit way to deploy using `forge create` is as follows:
+
+```Solidity
+forge create SimpleStorage --rpc-url http://127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+```
+
+We included the `--rpc-url` to not count on the default and the `--private-key` to not use the `--interactive` option anymore.
