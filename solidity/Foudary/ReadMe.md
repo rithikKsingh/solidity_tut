@@ -160,3 +160,16 @@ forge create SimpleStorage --rpc-url http://127.0.0.1:8545 --private-key 0xac097
 ```
 
 We included the `--rpc-url` to not count on the default and the `--private-key` to not use the `--interactive` option anymore.
+
+
+### Practicing Private Key Safety
+
+Having a private key in plain text is extremely bad. The private key(s) we used in the last lesson are well-known keys for local testing, you shouldn't use those on mainnet and keeping them in plain text is ok, but any other private key should be kept hidden, especially your production key or key's associated with accounts that hold crypto.
+
+Moreover, it's very bad to have private keys in bash history (hit the up arrow and see the key you used to deploy).
+
+You can delete your history by typing:
+
+```Solidity
+history -c
+```
