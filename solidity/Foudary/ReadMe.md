@@ -465,16 +465,13 @@ cast --to-base 0x000000000000000000000000000000000000000000000000000000000000053
 
 And surprise, surprise, `1337` came back.
 
-<img width="781" alt="Screenshot 2024-12-21 at 12 50 01 AM" src="https://github.com/user-attachments/assets/e73f9050-ec37-4fe5-8e0b-818d2fe2bf51" />
+<img width="781" alt="Screenshot 2024-12-21 at 12 50 01 AM" src="https://github.com/user-attachments/assets/380cbb0e-6f09-41ad-a964-9a77308831e4" />
 
-<img width="710" alt="Screenshot 2024-12-21 at 12 51 03 AM" src="https://github.com/user-attachments/assets/44c1d68e-979e-4afd-a998-f70d1b7d8351" />
+<img width="710" alt="Screenshot 2024-12-21 at 12 51 03 AM" src="https://github.com/user-attachments/assets/0785aa98-a9ce-4c26-97f3-3558be29962a" />
 
-<img width="782" alt="Screenshot 2024-12-21 at 12 52 21 AM" src="https://github.com/<img width="767" alt="Screenshot 2024-12-21 at 12 55 19 AM" src="https://github.com/user-attachments/assets/b8e65232-e7e4-4b9e-9b64-7fae56970a5d" />
-user-attachments/assets/afb5ab5e-b694-4527-8711-07ee5bb84302" />
+<img width="782" alt="Screenshot 2024-12-21 at 12 52 21 AM" src="https://github.com/user-attachments/assets/a7f6781e-b419-4cce-8e40-a05fd4fd11b4" />
 
-<img width="767" alt="Screenshot 2024-12-21 at 12 55 19 AM" src="https://github.com/user-attachments/assets/0c7bc3bf-5ff1-49fc-8ac0-9059ceff8c98" />
-
-
+<img width="767" alt="Screenshot 2024-12-21 at 12 55 19 AM" src="https://github.com/user-attachments/assets/048af397-e59d-4010-a931-5bc5826775cb" />
 
 
 
