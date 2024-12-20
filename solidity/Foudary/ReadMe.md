@@ -412,6 +412,6 @@ You will be asked for your password. You won't be able to deploy without your pa
 where, nameOfAccountGoesHere=default name of the account(you can check all the accounts using:`cast wallet list`)->it holds the encrypted private key
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266=account public address
 
-Clear your history so your private key won't randomly remain there using the following command: `history -c`.
+Clear your history so your private key won't randomly remain there using the following command: `history -c`(for bash terminal)(`history -p` for zsh).
 
 
