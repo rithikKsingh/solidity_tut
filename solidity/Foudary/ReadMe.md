@@ -414,4 +414,68 @@ where, nameOfAccountGoesHere=default name of the account(you can check all the a
 
 Clear your history so your private key won't randomly remain there using the following command: `history -c`(for bash terminal)(`history -p` for zsh).
 
+---
+### Interacting With Contract Addresses via Command Line & Foundry's Cast Tool
+We have `Anvil` running and the smart contract is deployed.
+
+Copy the contract address.
+
+### Sending information to the blockchain
+
+Foundry has a built-in tool known as `Cast`. `Cast` comes loaded with numerous commands to interact with. Learn more about them by typing `cast --help`. One such useful command is `send` which is designed to sign and publish a transaction. To view help about `send`, type `cast send --help`.
+
+To use `send` we need a signature and some arguments.
+
+Please call the following in your terminal:
+```bash
+cast send 0x5FbDB2315678afecb367f032d93F642f64180aa3 "store(uint256)" 1337 --rpc-url $RPC_URL --private-key $PRIVATE_KEY
+```
+**What did we just do?**
+
+Let's break it down:
+
+* `cast send` is the command we used to sign and publish our transaction;
+* `0x5FbDB2315678afecb367f032d93F642f64180aa3` or any other address is the target of our `cast send`, the contract we are interacting with;
+* `"store(uint256)"` is the [signature of the function](https://ethereum.stackexchange.com/questions/135205/what-is-a-function-signature-and-function-selector-in-solidity-and-evm-language) we are calling.
+* `1337` is the number we pass to the `store` function. As we can see in the function signature, we are expected to provide an `uint256` input. You can obviously provide any number you want, as long as it fits `uint256`.
+* you already know what `--rpc-url $RPC_URL --private-key $PRIVATE_KEY` are. The place where we send and the private key we use to sign.
+
+### Reading information from the blockchain
+
+`cast` conveniently provides a way to read information stored on the blockchain. Type `cast call --help` in your terminal to find out more. It works similarly to `send`, where you have to provide a signature and some arguments. The difference is you are only peering into the storage, not modifying it.
+
+Call the following command in your terminal:
+```bash
+cast call 0x5FbDB2315678afecb367f032d93F642f64180aa3 "retrieve()"
+```
+
+We receive back the following:
+
+```Solidity
+0x0000000000000000000000000000000000000000000000000000000000000539
+```
+
+This represents a hex value. In the previous lessons, we learned how to convert this to a normal number.
+
+Type the following command in your terminal:
+
+```Solidity
+cast --to-base 0x0000000000000000000000000000000000000000000000000000000000000539 dec
+```
+
+And surprise, surprise, `1337` came back.
+
+<img width="781" alt="Screenshot 2024-12-21 at 12 50 01 AM" src="https://github.com/user-attachments/assets/e73f9050-ec37-4fe5-8e0b-818d2fe2bf51" />
+
+<img width="710" alt="Screenshot 2024-12-21 at 12 51 03 AM" src="https://github.com/user-attachments/assets/44c1d68e-979e-4afd-a998-f70d1b7d8351" />
+
+<img width="782" alt="Screenshot 2024-12-21 at 12 52 21 AM" src="https://github.com/<img width="767" alt="Screenshot 2024-12-21 at 12 55 19 AM" src="https://github.com/user-attachments/assets/b8e65232-e7e4-4b9e-9b64-7fae56970a5d" />
+user-attachments/assets/afb5ab5e-b694-4527-8711-07ee5bb84302" />
+
+<img width="767" alt="Screenshot 2024-12-21 at 12 55 19 AM" src="https://github.com/user-attachments/assets/0c7bc3bf-5ff1-49fc-8ac0-9059ceff8c98" />
+
+
+
+
+
 
