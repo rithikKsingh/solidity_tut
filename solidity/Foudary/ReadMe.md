@@ -151,7 +151,8 @@ Do the following:
 4. Copy one of the private keys from the anvil terminal
 5. Run `forge create SimpleStorage --interactive`
    We don't need to specify an `--rpc-url` this time because forge defaults to Anvil's RPC URL.
-6. Go to the Anvil terminal and check the deployment details:
+   (If that doesn't work, use `forge create SimpleStorage --interactive --broadcast`.It's a new command)
+7. Go to the Anvil terminal and check the deployment details:
 
 The more explicit way to deploy using `forge create` is as follows:
 
