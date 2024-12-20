@@ -392,3 +392,26 @@ Let's agree to the following:
 
 1. For testing purposes use a `$PRIVATE_KEY` in an `.env` file as long as you don't expose that `.env` file anywhere.
 2. Where real money is involved use the `--interactive` option or a [keystore file protected by a password](https://github.com/Cyfrin/foundry-full-course-f23?tab=readme-ov-file#can-you-encrypt-a-private-key---a-keystore-in-foundry-yet).
+---
+### Encrypting your Keys Using ERC2335
+Type the following command in your terminal:
+```bash
+cast wallet import nameOfAccountGoesHere --interactive
+```
+You will be asked for your private key and a password to secure it. You will do this only once.
+To see all the configured wallets you can call the following: `cast wallet list`
+It will display all the keys.
+
+Now that we configured our wallet we can deploy as following:
+
+```Solidity
+forge script script/DeploySimpleStorage.s.sol --rpc-url http://127.0.0.1:8545 --broadcast --account nameOfAccountGoesHere --sender 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+```
+You will be asked for your password. You won't be able to deploy without your password.
+
+where, nameOfAccountGoesHere=default name of the account(you can check all the accounts using:`cast wallet list`)
+0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266=account public address
+
+Clear your history so your private key won't randomly remain there using the following command: `history -c`.
+
+
