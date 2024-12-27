@@ -513,3 +513,20 @@ This command deploys our contract to the testnet, and we can monitor the transac
 We soon find that our contract, Simple Storage, has been deployed on the Sepolia chain. We can grab our transaction hash and input it into Sepolia etherscan IO to confirm the successful transaction.
 
 After we refresh our Alchemy dashboard, we'll verify the requests sent and track the ETH send raw transaction that transmitted our transaction to the blockchain.
+
+---
+---
+
+### Foundry ZKsync
+Installing zksync
+
+1. git clone https://github.com/matter-labs/foundry-zksync.git
+2. go to the directory: cd foundry-zksync.
+3. ./install-foundry-zksync
+4. if you write : ```forge --version``` -> it will give you slightly different version compared to what you get in vanilla foundry.
+5. you can use ```foundryup-zksync``` : to install the lastest version of foundry
+6. ```forge buld --help``` will show you all the details related to the compiler
+7. to switch back to vanila foundry , just do : ```foundryup``` . to get back to zksync: ```foundryup-zksync```
+
+   in case you get error , use chatGPT and solve the problem.
+
