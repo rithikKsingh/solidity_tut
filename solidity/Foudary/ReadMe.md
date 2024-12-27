@@ -530,3 +530,44 @@ Installing zksync
 
    in case you get error , use chatGPT and solve the problem.
 
+---
+```forge build --zksync```
+
+The command `forge build --zksync` is used with **Forge**, a tool from the **Foundry** framework for developing, testing, and deploying smart contracts. The `--zksync` flag specifically targets compatibility with **zkSync**, a Layer 2 scaling solution for Ethereum.
+
+Here’s what it does:
+
+---
+
+### **1. Compiles Smart Contracts**
+The `forge build` command:
+- Compiles all the Solidity smart contracts in your project.
+- Produces bytecode, ABI (Application Binary Interface), and other artifacts for your contracts.
+- Ensures the contracts are ready for deployment or testing.
+
+---
+
+### **2. zkSync Compatibility**
+The `--zksync` flag modifies the compilation process to ensure that the resulting smart contracts are compatible with zkSync's unique execution environment. Specifically:
+
+- **zkSync Opcodes Support:** Adjusts the compiled bytecode to use zkSync's specific opcodes and Layer 2 optimizations.
+- **Account Abstraction:** zkSync uses account abstraction by default, and this flag ensures the compiled contracts are ready to interact with zkSync’s native account model.
+- **Custom Precompiles and Features:** Includes support for zkSync-specific precompiled contracts and features not present on Ethereum Layer 1.
+- **Optimized Gas and Costs:** Compiles with settings tailored to zkSync’s gas model, which differs from Ethereum Layer 1.
+
+---
+
+### **3. Outputs Compiled Artifacts**
+The command outputs the following artifacts:
+- **Bytecode:** The deployable code for your smart contracts.
+- **ABI Files:** Descriptions of the contract interfaces for integration with frontends or scripts.
+- These files are typically stored in the `out/` directory by default.
+
+---
+
+### **When to Use `forge build --zksync`**
+Use this command when:
+- You're developing contracts specifically for deployment on the zkSync network.
+- You want to leverage zkSync's scalability benefits (lower fees and faster transactions).
+
+If you’re targeting Ethereum or another Layer 2 that doesn’t use zkSync's environment, you can omit the `--zksync` flag.
