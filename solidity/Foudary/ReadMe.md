@@ -571,3 +571,59 @@ Use this command when:
 - You want to leverage zkSync's scalability benefits (lower fees and faster transactions).
 
 If you’re targeting Ethereum or another Layer 2 that doesn’t use zkSync's environment, you can omit the `--zksync` flag.
+
+---
+###ZKSync local node
+### Introduction
+
+> 👀❗**IMPORTANT**:br
+> This lesson is optional. If you encounter difficulties installing or understanding the required tools, feel free to proceed to the next section and continue using Anvil to test your smart contract locally.
+
+In the previous lessons, we learned about deploying smart contracts with the `forge create` and `forge script` commands on our **local Anvil chain**. In this lesson, we will set up and run a **ZKsync local environment**.
+
+### Local Node Setup
+
+To deploy locally on a ZKsync local chain, you'll need additional tools: Docker, Node.js, and zksync-cli.
+
+1. **Docker**: Start the [Docker](https://www.docker.com/) daemon. On Mac OS, you can start it using the Docker application interface. On Linux, use commands like `sudo systemctl start docker` and `sudo systemctl stop docker` will manage Docker lifecycles. Verify the installation with `docker --version` and `docker ps` commands.
+
+2. **Node.js and npm**: Install [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com/). Follow the Node.js documentation to install the right version for your operating system. Verify the installations with `npm --version` and `node --version` commands.
+
+3. **zksync-cli**: Once Docker and Node.js are installed, you can install the [zksync-cli](https://www.npmjs.com/package/zksync-cli) to manage your local ZKsync development environment. Run `npx zksync-cli dev config` to set up your configuration. Choose the `in-memory` node option for a quick startup without persistent state and avoid additional options like a portal or block explorer unless you want to explore them independently.
+
+To start your local ZKsync node, run `npx zksync-cli dev start`. This command spins up a ZKsync node in Docker and runs it in the background. Verify the process is running with `docker ps`.
+
+> 🗒️ **NOTE**:br
+> If Docker isn’t running, the `npx zksync-cli dev start` command will fail. Ensure Docker is running before attempting to start the ZKsync node again.
+
+### Deployment
+
+The ZKsync deployment process is similar to previous deployments. We will use the same commands, but this time, we will append the `--zksync` and `--legacy` flags. Note that the `forge script` command is not well supported in ZKsync, so we will use `forge create` instead.
+
+### Conclusion
+
+Setting up a local ZKsync node involves a few additional tools, including Docker, Node.js, npm, and zksync-cli: they will help creating a robust ZKsync development environment and allowing test and deployment of smart contracts on a ZKsync local chain.
+
+### ZKSync local deploy
+In this lesson, we are going to deploy the contract `SimpleStorage.sol` on a **ZKsync local chain**.
+
+We start by verifying that the Forge version we are using is correct. By running the `forge --version` command it confirms that we are on version 0.2: this indicates we are using the right Foundry ZKsync edition.
+
+Next, we proceed with creating a `SimpleStorage` contract using the command:
+
+```bash
+forge create src/SimpleStorage.sol:SimpleStorage --rpc_url <RPC_URL> --private_key <PRIVATE_KEY> --legacy --zksync
+```
+
+Here, `<RPC_URL>` represents ZKsync node address, such as `http://127.0.0.1:8011`.
+
+> 👀❗**IMPORTANT**:br
+> Including private keys directly in commands is not a safe practice.
+
+This command instructs Foundry to locate the `SimpleStorage` contract in the `src/SimpleStorage.sol` file and deploy it. Upon execution, the contract compiles and deploys successfully. The output will display details such as the deployer, the deployed contract address, and the transaction hash.
+
+![image](https://github.com/user-attachments/assets/7f0529e2-13e6-48c4-ada9-95fc62cda4f7)
+
+Using the `--legacy` flag is recommended for deploying simple contracts, while more complex codebases may require different approaches. Attempting to deploy without the `--legacy` flag might result in errors like `failed to serialize transaction, address to address is null`, which will be covered in future lessons.
+
+Once you are finished, you can close Docker Desktop and revert to the Vanilla Foundry environment using the `foundryup` command.
