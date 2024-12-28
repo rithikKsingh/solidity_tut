@@ -700,3 +700,30 @@ The Mempool watcher provides extensive details about your transactions, such as:
 
 This detailed transaction tracking allows you to have a better understanding of each transaction and aids immensely in debugging specific issues related to individual transactions.
 
+------
+------
+### Summary
+## Key Takeaways from the Project
+
+Firstly, we journeyed through the process of creating a new Foundry project using Forge and Knit. These essential tools afforded us a structured, professional environment complete with folders to keep our work organized.
+
+We not only learnt about Foundry’s basic commands but also their specific functionalities such as:
+
+* **Cast**: interacts with contracts that have been previously deployed.
+* **Forge**: compiles and interacts with our contracts.
+* **Anvil**: deploys a local blockchain, similar to another tool we used, Ganache.
+
+A pivotal part of our learning process was comprehending that sending a transaction via our MetaMask is tantamount to making an HTTP post request to a particular RPC URL. A similar RPC URL can be obtained from a node-as-a-service provider like [Alchemy](https://www.alchemyapi.io/) and used to send transactions directly from our Foundry projects.
+
+We obtained practical knowledge on how to compile code in Foundry and write a Solidity script for its subsequent deployment. We also find it critical to ensure the security of our private keys. Hence, throughout this course, we will be using an `.env` file. But be warned when dealing with real money, having your private key in plain text is not advisable.
+
+## Understanding Contract Deployment and Interaction on the Blockchain
+
+We delved into the automation of contract deployments to a blockchain. Post-deployment, we interacted with them using the `cast` keyword and `send` to make transactions, then `cast call` to read from those contracts.
+
+Moreover, the knowledge on how to auto format contracts with `Forge format` was acquired. We also learnt the painstaking yet rewarding manual method of verifying our contracts on the blockchain.
+
+```bash
+forge format my_contract.sol
+```
+
