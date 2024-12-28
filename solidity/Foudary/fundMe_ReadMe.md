@@ -1,7 +1,9 @@
 ### Project setup
 create a new folder(ex- foundry-fund-me) -> move to it -> ```forge init```
 
-* smart contracts testing
+---
+
+### smart contracts testing
   
 #### Counter.sol
 
@@ -36,9 +38,10 @@ After the contracts are compiled you will see an output related to tests:
 
 Run `forge test --help` to explore the options.
 
-n short, in our specific case:
+In short, in our specific case:
 
 1. Forge identified all the files in the test folder, went into the only file available and ran the `setUp` function.
 2. After the setup is performed it goes from top to bottom in search of public/external functions that start with `test`.
 3. All of them will be called and the conclusion of their execution will be displayed. By that we mean it will run all the `assert` statements it can find and if all evaluate to `true` then the test will pass. If one of the `assert` statements evaluates to `false` the test will fail.
 
+---
