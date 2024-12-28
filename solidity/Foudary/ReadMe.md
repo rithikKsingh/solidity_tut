@@ -645,3 +645,58 @@ Additionally, ZKsync introduces its [unique transaction type](https://docs.zksyn
 
 > 💡 **TIP**:br
 > The `forge script` command will work in some scenarios, but it’s not entirely clear where it might fail.
+
+https://docs.zksync.io/zksync-protocol/rollup/transaction-lifecycle
+
+---
+
+### Why deploying on L2
+we deployed to the Sepolia testnet and started working with the Layer 2 solution ZKsync. Deploying to Sepolia simulates deployment to the Ethereum mainnet, offering a comprehensive understanding of Layer 1 deployments. However, it's important to note that most projects today prefer deploying to Layer 2 solutions rather than directly to Ethereum due to the high costs associated with deployments.
+
+### Gas Usage
+
+When deploying to a ZKsync local node, a `/broadcast` folder is created, containing a lot of detailed deployment transaction information. For instance, in our `run-latest.json` file, we can see the `gasUsed` value and we can convert this hexadecimal number `0x5747A` to its decimal equivalent by typing `cast to base 0x5747A dec`. This conversion allows us to estimate the deployment cost on the Ethereum mainnet. By checking recent gas prices on Etherscan, we can calculate the total cost using the formula:
+
+```Solidity
+Total Cost = Gas Used * Gas Price
+```
+
+We can see this total cost in the deployment transaction on [Sepolia Etherscan](https://sepolia.etherscan.io/tx/0xc496b9d30df33aa9285ddd384c14ce2a58eef470898b5cda001d0f4a21b017f6), under the `Transaction Fee` section. In this case, `357,498` gas will costs `0.000279288255846978` ETH, which today is equivalent to \$7.
+
+Deploying even a minimal contract like `SimpleStorage` on Ethereum can be expensive. Larger contracts, with thousands of lines of code, can cost thousands of dollars. This is why many developers prefer deploying to Layer 2 solutions like ZKsync, which offer the same security as Ethereum but at a fraction of the cost.
+
+### Deploying to ZKsync Sepolia
+
+Deploying to ZKsync Sepolia is similar to deploying to a ZKsync local node. You can retrieve a ZKsync Sepolia RPC URL from [Alchemy](https://www.alchemy.com/) by creating a new app based on the ZKsepolia network. Then, you can proceed to add the `ZKSYNC_RPC_URL` to your `.env` configuration.
+
+---
+### Introduction To Alchemy
+Alchemy is a platform equipped with APIs, SDKs, and libraries to enhance your developer experience while working on Web3 projects. Think of Alchemy as the AWS of Web3. It functions as a node provider and developer tooling platform predominantly used in thousands of Web3 and Web2 applications, including large Web2 corporations like Adobe, Shopify, and Stripe.
+
+The need for platforms such as Alchemy arises from the fact that, as a developer, you don't usually have to worry about running the servers your code operates on or developing the deployment and integration pipelines for your application. Instead, you use services such as AWS, Azure, and Google Cloud for that—Alchemy does the same but for Web3.
+
+In the context of blockchain, **Alchemy** refers to a development platform and suite of tools that simplifies building decentralized applications (dApps) on various blockchain networks. Alchemy provides developers with APIs, analytics, and infrastructure to create, deploy, and manage blockchain-based projects more efficiently.
+
+Some key features of Alchemy in the blockchain space include:
+
+- **Infrastructure**: It offers reliable and scalable infrastructure for interacting with blockchain networks like Ethereum and others.
+- **APIs**: Alchemy provides APIs that make it easier to connect dApps with blockchain networks.
+- **Enhanced Debugging**: The platform includes advanced debugging tools for developers to troubleshoot and optimize their smart contracts and dApps.
+- **Data Analytics**: Alchemy provides analytics and monitoring tools for blockchain activity, which can be crucial for understanding transaction performance and optimizing dApp behavior.
+
+Alchemy aims to streamline the development process, reducing complexity and making blockchain technology more accessible to developers.
+
+## Mempool Watcher
+
+Another powerful tool provided by Alchemy is the Mempool watcher. Picture it as Ethereum's mempool, where all pending transactions reside waiting for validation or mining.
+
+The Mempool watcher provides extensive details about your transactions, such as:
+
+* Transaction status (mined, pending, dropped, replaced)
+* Gas used
+* Time taken for validation
+* Transaction value
+* Sender's and receiver's address
+
+This detailed transaction tracking allows you to have a better understanding of each transaction and aids immensely in debugging specific issues related to individual transactions.
+
