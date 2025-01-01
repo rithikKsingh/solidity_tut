@@ -278,3 +278,7 @@ contract DeployFundMe is Script {
 ```
 run : forge script script/DeployFundMe.s.sol
 
+*** Do we want to use our deploy scripts in our test suites?
+
+Yes, we also want to test the way we deploy our smart contract
+
